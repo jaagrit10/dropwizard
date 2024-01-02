@@ -1,3 +1,17 @@
-http:
-  port: 8080
-  adminPort: 8081
+#http:
+#  port: 8080
+#  adminPort: 8081
+
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+
+  # the username
+  user: postgres
+
+  # the password
+  password: jaagrit10
+
+  # the JDBC URL
+  #dropwizarddb should be replaced with the db name
+  url: jdbc:postgresql://[::1]:5432/postgres
