@@ -4,14 +4,14 @@
 
 database:
   # the name of your JDBC driver
-  driverClass: org.postgresql.Driver
+  driverClass: org.mariadb.jdbc.Driver
 
   # the username
-  user: postgres
+  user: root
 
   # the password
-  password: jaagrit10
+  password: pulkit19
 
   # the JDBC URL
   #dropwizarddb should be replaced with the db name
-  url: jdbc:postgresql://[::1]:5432/postgres
+  url: jdbc:mariadb://[::1]:3306/mysql
