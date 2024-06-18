@@ -1,8 +1,10 @@
 package com.dropwizard.service;
 
+import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.Date;
 import java.util.List;
@@ -25,4 +27,15 @@ public interface DAO {
 
     @SqlQuery("select name from userData where id 1")
     String testQuery();
+
+    @SqlQuery("select * from tasks where userId = :userId")
+    @RegisterRowMapper(TaskMapper.class)
+    List<Task> getTasksForUser(@Bind("userId") int userId);
+
+    @SqlQuery("select * from tasks where taskId = :taskId")
+    @RegisterRowMapper(TaskMapper.class)
+    Task getTaskByTaskId(@Bind("taskId") int taskId);
+
+    @SqlUpdate("delete from tasks where taskId = :taskId")
+    void deleteTaskByTaskId(@Bind("taskId") int taskId);
 }

@@ -7,15 +7,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Singleton;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.jdbi.v3.core.Jdbi;
 
+import java.util.List;
 
-@Path("/{user}/task")
+
+@Path("/task")
 @Produces(MediaType.APPLICATION_JSON)
 @Singleton
 @Tag(name = "Task Resource")
@@ -39,5 +38,42 @@ public class TaskResource {
         dao.insertTask(task.getUserId(), task.getUsername(), task.getStatus(), task.getSubject(), task.getDescription(), task.getStartDate(), task.getTargetDate());
         return true;
     }
+
+    @GET
+    @Path("/get/{userId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Operation(
+            summary = "get tasks for user",
+            description = "get all tasks for a particular user"
+    )
+    public List<Task> getTask(@PathParam("userId") int userId){
+        System.out.println(dao.getTasksForUser(userId));
+        return dao.getTasksForUser(userId);
+    }
+
+    @GET
+    @Path("/get/{userId}/{taskId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(
+            summary = "get task for a user",
+            description = "get a particular task for a particular user"
+    )
+    public Task getTaskByTaskId( @PathParam("taskId") int taskId){
+        return dao.getTaskByTaskId(taskId);
+    }
+
+    @DELETE
+    @Path("/delete/{taskId}")
+    @Operation(
+            summary = "delete task for a user",
+            description = "delete a particular task for a particular user"
+    )
+
+    public boolean deleteTaskByTaskId(@PathParam("taskId") int taskId){
+        dao.deleteTaskByTaskId(taskId);
+        return true;
+    }
+
+
 
 }
