@@ -7,6 +7,8 @@ import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
 import io.dropwizard.jdbi3.JdbiFactory;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.jdbi.v3.core.Jdbi;
 
 public class ServiceServer extends Application<Config> {
@@ -15,6 +17,12 @@ public class ServiceServer extends Application<Config> {
     }
     @Override
     public void initialize(Bootstrap<Config> bootstrap) {
+       bootstrap.addBundle(new SwaggerBundle<Config>() {
+        @Override
+        protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(Config configuration) {
+            return configuration.getSwagger();
+        }
+    });
 
     }
 

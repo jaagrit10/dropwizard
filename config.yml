@@ -15,3 +15,6 @@ database:
   # the JDBC URL
   #dropwizarddb should be replaced with the db name
   url: jdbc:mariadb://[::1]:3306/mysql
+
+swagger:
+  resourcePackage: com.dropwizard.service.resource
