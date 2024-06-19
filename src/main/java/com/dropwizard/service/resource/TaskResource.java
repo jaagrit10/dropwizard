@@ -12,6 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Path("/task")
@@ -71,6 +72,31 @@ public class TaskResource {
 
     public boolean deleteTaskByTaskId(@PathParam("taskId") int taskId){
         dao.deleteTaskByTaskId(taskId);
+        return true;
+    }
+
+    @PUT
+    @Path("/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(
+            summary = "update task for a user",
+            description = "update a particular task for a particular user"
+    )
+    public boolean updateTaskByTaskId(Task task){
+        Task taskToBeUpdated = dao.getTaskByTaskId(task.getTaskId());
+        if (!(Objects.isNull(task.getStatus())))  taskToBeUpdated.setStatus(task.getStatus());
+        if (!(Objects.isNull(task.getSubject())))   taskToBeUpdated.setSubject(task.getSubject());
+        if (!(Objects.isNull(task.getDescription())))   taskToBeUpdated.setDescription(task.getDescription());
+        if (!(Objects.isNull(task.getStartDate())))   taskToBeUpdated.setStartDate(task.getStartDate());
+        if (!(Objects.isNull(task.getTargetDate())))   taskToBeUpdated.setTargetDate(task.getTargetDate());
+        dao.updateTask(taskToBeUpdated.getTaskId(),
+                taskToBeUpdated.getUserId(),
+                taskToBeUpdated.getUsername(),
+                taskToBeUpdated.getStatus(),
+                taskToBeUpdated.getSubject(),
+                taskToBeUpdated.getDescription(),
+                taskToBeUpdated.getStartDate(),
+                taskToBeUpdated.getTargetDate());
         return true;
     }
 

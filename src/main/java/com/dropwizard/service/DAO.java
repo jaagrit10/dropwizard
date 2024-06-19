@@ -38,4 +38,7 @@ public interface DAO {
 
     @SqlUpdate("delete from tasks where taskId = :taskId")
     void deleteTaskByTaskId(@Bind("taskId") int taskId);
+
+    @SqlUpdate("replace into tasks (taskId, userId, username, status, subject, description, startDate, targetDate) values (:taskId, :userId, :username, :status, :subject, :description, :startDate, :targetDate)")
+    void updateTask(@Bind("taskId") int taskId, @Bind("userId") int userId, @Bind("username") String username, @Bind("status") String status, @Bind("subject") String subject, @Bind("description") String description, @Bind("startDate") Date startDate, @Bind("targetDate") Date targetDate);
 }

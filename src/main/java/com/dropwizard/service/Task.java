@@ -1,18 +1,12 @@
 package com.dropwizard.service;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
-import org.skife.jdbi.v2.StatementContext;
-import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 public class Task {
-    @JsonIgnore
     @ColumnName("taskId")
     private int taskId;
     @ColumnName("userId")
@@ -42,6 +36,39 @@ public class Task {
         this.startDate = startDate;
         this.targetDate = targetDate;
     }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setTargetDate(Date targetDate) {
+        this.targetDate = targetDate;
+    }
+
     public Task(int taskId, int userId, String username, String status, String subject, String description, Date startDate, Date targetDate) {
         this.taskId = taskId;
         this.userId = userId;
