@@ -3,6 +3,7 @@ package com.dropwizard.service;
 import com.dropwizard.service.resource.HealthCheckResource;
 import com.dropwizard.service.resource.Route;
 import com.dropwizard.service.resource.TaskResource;
+import com.dropwizard.service.services.TaskService;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
@@ -31,7 +32,8 @@ public class ServiceServer extends Application<Config> {
         final JdbiFactory factory = new JdbiFactory();
         final Jdbi jdbi = factory.build(environment, config.getDataSourceFactory(), "postgresql");
         Route route = new Route(jdbi);
-        TaskResource taskResource = new TaskResource(jdbi);
+        TaskService taskService = new TaskService(jdbi);
+        TaskResource taskResource = new TaskResource(jdbi, taskService);
         environment.jersey().register(route);
         environment.jersey().register(taskResource);
         environment.jersey().register(new HealthCheckResource());
