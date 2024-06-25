@@ -14,8 +14,8 @@ database:
 
   # the JDBC URL
   #dropwizarddb should be replaced with the db name
-#  url: jdbc:mysql://172.17.0.2:3306/mysql #when running for docker
-  url: jdbc:mysql://localhost:3306/mysql #when running on localIde
+  url: jdbc:mysql://172.17.0.2:3306/mysql #when running for docker
+#  url: jdbc:mysql://localhost:3306/mysql #when running on localIde
 
 swagger:
   resourcePackage: com.dropwizard.service.resource

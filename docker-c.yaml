@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  mysql-container:
+    image: 05247af918647d8d063d2e880cc65c1546a7d616cde1e6c6f5dab1ca091f6cf8
+    network_mode: "bridge"
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=pulkit19
+      - MYSQL_DATABASE=mysql
+
+  todo-docker-compose:
+    image: 5b6b98bf1c215c7bffaadfca1e89909c34114b2e1c7c507353fb8955e3232c96
+    network_mode: "bridge"
+    ports:
+      - 8080:8080
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
