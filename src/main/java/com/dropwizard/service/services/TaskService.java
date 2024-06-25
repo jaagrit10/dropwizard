@@ -2,6 +2,7 @@ package com.dropwizard.service.services;
 
 import com.dropwizard.service.DAO;
 import com.dropwizard.service.Task;
+import com.dropwizard.service.enums.StatusEnum;
 import jakarta.ws.rs.core.Response;
 import org.jdbi.v3.core.Jdbi;
 
@@ -15,7 +16,13 @@ public class TaskService {
 
     public Response addTask(Task task){
         try {
-            dao.insertTask(task.getUserId(),task.getUsername(), task.getStatus(), task.getSubject(), task.getDescription(), task.getStartDate(), task.getTargetDate());
+            dao.insertTask(task.getUserId(),
+                    task.getUsername(),
+                    (Objects.isNull(task.getStatus())) ? StatusEnum.TODO.toString() : task.getStatus().toString(),
+                    task.getSubject(),
+                    task.getDescription(),
+                    task.getStartDate(),
+                    task.getTargetDate());
             return Response.ok("Task added Successfully").build();
 
         } catch (Exception e)
@@ -79,7 +86,7 @@ public class TaskService {
             dao.updateTask(taskToBeUpdated.getTaskId(),
                     taskToBeUpdated.getUserId(),
                     taskToBeUpdated.getUsername(),
-                    taskToBeUpdated.getStatus(),
+                    taskToBeUpdated.getStatus().toString(),
                     taskToBeUpdated.getSubject(),
                     taskToBeUpdated.getDescription(),
                     taskToBeUpdated.getStartDate(),

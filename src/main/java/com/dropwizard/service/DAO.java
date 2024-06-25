@@ -1,5 +1,6 @@
 package com.dropwizard.service;
 
+import com.dropwizard.service.enums.StatusEnum;
 import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;

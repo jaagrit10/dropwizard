@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79bb1c46-2937-4d3e-b57f-1accebdfeeb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/services/TaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/enums/StatusEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/ServiceServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/ServiceServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/resource/TaskResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/resource/TaskResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/TaskMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/TaskMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/services/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dropwizard/service/services/TaskService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,5 +99,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
