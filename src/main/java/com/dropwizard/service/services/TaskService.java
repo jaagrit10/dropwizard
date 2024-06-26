@@ -72,18 +72,18 @@ public class TaskService {
 
     }
 
-    public Response updateTaskByTaskId(Task task){
-        Task taskToBeUpdated = dao.getTaskByTaskId(task.getTaskId());
+    public Response updateTaskByTaskId(Task task, int taskId, StatusEnum status){
+        Task taskToBeUpdated = dao.getTaskByTaskId(taskId);
         if (Objects.isNull(taskToBeUpdated)){
             return Response.ok("No task with the given Task Id found, please select the correct taskId").build();
         }
-        if (!(Objects.isNull(task.getStatus())))  taskToBeUpdated.setStatus(task.getStatus());
-        if (!(Objects.isNull(task.getSubject())))   taskToBeUpdated.setSubject(task.getSubject());
-        if (!(Objects.isNull(task.getDescription())))   taskToBeUpdated.setDescription(task.getDescription());
-        if (!(Objects.isNull(task.getStartDate())))   taskToBeUpdated.setStartDate(task.getStartDate());
-        if (!(Objects.isNull(task.getTargetDate())))   taskToBeUpdated.setTargetDate(task.getTargetDate());
+        if (!(Objects.isNull(status)))  taskToBeUpdated.setStatus(status);
+        if (!Objects.isNull(task) && !(Objects.isNull(task.getSubject())))   taskToBeUpdated.setSubject(task.getSubject());
+        if (!Objects.isNull(task) && !(Objects.isNull(task.getDescription())))   taskToBeUpdated.setDescription(task.getDescription());
+        if (!Objects.isNull(task) && !(Objects.isNull(task.getStartDate())))   taskToBeUpdated.setStartDate(task.getStartDate());
+        if (!Objects.isNull(task) && !(Objects.isNull(task.getTargetDate())))   taskToBeUpdated.setTargetDate(task.getTargetDate());
         try{
-            dao.updateTask(taskToBeUpdated.getTaskId(),
+            dao.updateTask(taskId,
                     taskToBeUpdated.getUserId(),
                     taskToBeUpdated.getUsername(),
                     taskToBeUpdated.getStatus().toString(),
@@ -92,7 +92,7 @@ public class TaskService {
                     taskToBeUpdated.getStartDate(),
                     taskToBeUpdated.getTargetDate());
             return Response
-                    .ok(dao.getTaskByTaskId(taskToBeUpdated.getTaskId()))
+                    .ok(dao.getTaskByTaskId(taskId))
                     .build();
         } catch (Exception e){
             return Response
