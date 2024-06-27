@@ -60,7 +60,7 @@ public class TaskResource {
             summary = "get task for a user",
             description = "get a particular task for a particular user"
     )
-    public Response getTaskByTaskId(@QueryParam("taskId") int taskId){
+    public Response getTaskByTaskId(@QueryParam("taskId") String taskId){
         return taskService.getTaskByTaskId(taskId);
     }
 
@@ -71,7 +71,7 @@ public class TaskResource {
             description = "delete a particular task for a particular user"
     )
 
-    public Response deleteTaskByTaskId(@PathParam("taskId") int taskId){
+    public Response deleteTaskByTaskId(@PathParam("taskId") String taskId){
         return taskService.deleteTaskByTaskId(taskId);
     }
 
@@ -82,7 +82,7 @@ public class TaskResource {
             summary = "update task for a user",
             description = "update a particular task for a particular user"
     )
-    public Response updateTaskByTaskId(Task task, @PathParam("taskId") int taskId, @QueryParam("status") StatusEnum statusEnum){
+    public Response updateTaskByTaskId(Task task, @PathParam("taskId") String taskId, @QueryParam("status") StatusEnum statusEnum){
         return taskService.updateTaskByTaskId(task, taskId, statusEnum);
     }
 

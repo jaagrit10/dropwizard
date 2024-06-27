@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Task {
     @ColumnName("taskId")
-    private int taskId;
+    private String taskId;
     @ColumnName("userId")
     private int userId;
     @ColumnName("username")
@@ -39,7 +39,7 @@ public class Task {
         this.targetDate = targetDate;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(String taskId) {
         this.taskId = taskId;
     }
 
@@ -71,7 +71,7 @@ public class Task {
         this.targetDate = targetDate;
     }
 
-    public Task(int taskId, int userId, String username, StatusEnum status, String subject, String description, Date startDate, Date targetDate) {
+    public Task(String taskId, int userId, String username, StatusEnum status, String subject, String description, Date startDate, Date targetDate) {
         this.taskId = taskId;
         this.userId = userId;
         this.username = username;
@@ -83,7 +83,7 @@ public class Task {
     }
 
     @JsonProperty
-    public int getTaskId() {
+    public String getTaskId() {
         return taskId;
     }
     @JsonProperty
