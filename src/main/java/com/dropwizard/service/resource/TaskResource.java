@@ -2,6 +2,7 @@ package com.dropwizard.service.resource;
 
 import com.dropwizard.service.DAO;
 import com.dropwizard.service.Task;
+import com.dropwizard.service.enums.StatusEnum;
 import com.dropwizard.service.services.TaskService;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,13 +54,13 @@ public class TaskResource {
     }
 
     @GET
-    @Path("/get/{userId}/{taskId}")
+    @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "get task for a user",
             description = "get a particular task for a particular user"
     )
-    public Response getTaskByTaskId( @PathParam("taskId") int taskId){
+    public Response getTaskByTaskId(@QueryParam("taskId") String taskId){
         return taskService.getTaskByTaskId(taskId);
     }
 
@@ -70,19 +71,19 @@ public class TaskResource {
             description = "delete a particular task for a particular user"
     )
 
-    public Response deleteTaskByTaskId(@PathParam("taskId") int taskId){
+    public Response deleteTaskByTaskId(@PathParam("taskId") String taskId){
         return taskService.deleteTaskByTaskId(taskId);
     }
 
     @PUT
-    @Path("/update")
+    @Path("/update/{taskId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "update task for a user",
             description = "update a particular task for a particular user"
     )
-    public Response updateTaskByTaskId(Task task){
-        return taskService.updateTaskByTaskId(task);
+    public Response updateTaskByTaskId(Task task, @PathParam("taskId") String taskId, @QueryParam("status") StatusEnum statusEnum){
+        return taskService.updateTaskByTaskId(task, taskId, statusEnum);
     }
 
 

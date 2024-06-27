@@ -1,20 +1,22 @@
 package com.dropwizard.service;
 
+import com.dropwizard.service.enums.StatusEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.ws.rs.DefaultValue;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.util.Date;
 
 public class Task {
     @ColumnName("taskId")
-    private int taskId;
+    private String taskId;
     @ColumnName("userId")
     private int userId;
     @ColumnName("username")
     private String username;
     @ColumnName("status")
-    private String status;
+    private StatusEnum status;
     @ColumnName("subject")
     private String subject;
     @ColumnName("description")
@@ -27,7 +29,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(int userId, String username, String status, String subject, String description, Date startDate, Date targetDate) {
+    public Task(int userId, String username, StatusEnum status, String subject, String description, Date startDate, Date targetDate) {
         this.userId = userId;
         this.username = username;
         this.status = status;
@@ -37,7 +39,7 @@ public class Task {
         this.targetDate = targetDate;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(String taskId) {
         this.taskId = taskId;
     }
 
@@ -49,7 +51,7 @@ public class Task {
         this.username = username;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
@@ -69,7 +71,7 @@ public class Task {
         this.targetDate = targetDate;
     }
 
-    public Task(int taskId, int userId, String username, String status, String subject, String description, Date startDate, Date targetDate) {
+    public Task(String taskId, int userId, String username, StatusEnum status, String subject, String description, Date startDate, Date targetDate) {
         this.taskId = taskId;
         this.userId = userId;
         this.username = username;
@@ -81,7 +83,7 @@ public class Task {
     }
 
     @JsonProperty
-    public int getTaskId() {
+    public String getTaskId() {
         return taskId;
     }
     @JsonProperty
@@ -93,7 +95,7 @@ public class Task {
         return username;
     }
     @JsonProperty
-    public String getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
     @JsonProperty
